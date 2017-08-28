@@ -79,7 +79,35 @@
     O comando inspect \'e respons\'avel por informa todos os dados referentes \`a imagem.
 \end{frame}
 
+\begin{frame}{Docekr}
+    \framesubtitle{Criando sua pr\'opria imagem no Docker}
+    Há duas formas de criar images customizadas: com commit e com Dockerfile.
+    \begin{itemize}
+        \item Criando images com commit
+    \end{itemize}
+    Primeiro criamos um container :
+    \begin{enumerate}
+        \item docker run -it --name dockercurso-debian debian:latest /bin/bash
+    \end{enumerate} 
+    Agora que estamos no bash do container, instalamos o nginx:
+    \begin{enumerate}
+        \item apt-get update
+        \item apt-get install nginx -y
+        \item exit
+    \end{enumerate}
+    Paramos o container com o comando abaixo:
+    \begin{enumerate}
+        \item docker container stop dockercurso-debian 
+    \end{enumerate}
+\end{frame}
 
+\begin{frame}{Docekr}
+    \framesubtitle{Criando sua pr\'opria imagem no Docker}
+    Agora, efetuamos o commit desse container em uma imagem:
+    \begin{enumerate}
+        \item docker container commit dockercurso-debian dockercurso-nginx
+    \end{enumerate}
+\end{frame}
 \begin{frame}{Docker}
   \framesubtitle{Teste}
   \begin{columns}
