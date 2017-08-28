@@ -60,7 +60,6 @@
     \includegraphics[height=5cm]{img/hello.png}
 \end{frame}
 
-\setwatermark{\fontsize{125pt}{125pt}\selectfont{Simple}}
 \begin{frame}{Docker}
     \framesubtitle{Comandos básicos}
     Para iniciar um container \'e necess\'ario saber a partir de qual imagem será executado. Para lista as
@@ -79,8 +78,9 @@
     O comando inspect \'e respons\'avel por informa todos os dados referentes \`a imagem.
 \end{frame}
 
-\begin{frame}{Docekr}
+\begin{frame}{Docker}
     \framesubtitle{Criando sua pr\'opria imagem no Docker}
+    Uma imagem nada mais \'e do que um ambiente totalmente encapsulado e pronto para ser replicado onde desejar.
     Há duas formas de criar images customizadas: com commit e com Dockerfile.
     \begin{itemize}
         \item Criando images com commit
@@ -101,12 +101,61 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Docekr}
+\begin{frame}{Docker}
     \framesubtitle{Criando sua pr\'opria imagem no Docker}
     Agora, efetuamos o commit desse container em uma imagem:
     \begin{enumerate}
         \item docker container commit dockercurso-debian dockercurso-nginx
     \end{enumerate}
+    Para visualizar a lista de imagens e encontrar a que acabou de criar,
+    execute novamente o comando abaixo:
+    \begin{enumerate}
+        \item docker image list
+    \end{enumerate}
+    Para testar sua nova image, vamos criar um container a parti dela e verificar se o nginx está instalado:
+    \begin{enumerate}
+        \item docker run -it --rm dockercurso-nginx dpkg -l nginx
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Docker}
+    \framesubtitle{Criando imagens com Dockerfile}
+    O docker permite que possamos criar images a partir de um arquivo de defini\c{c}\~ao, 
+    esse arquivo chama-se Dockerfile. Em resumo, o Dockerfile  um arquivo texto com
+    instru\c{c}~oes, comandos e passos que voc\^e executaria manualmente, basicamente
+    o Docker executa uma receita de bolo.
+    \includegraphics[height=5cm]{img/docker-stages.png}
+\end{frame}
+
+\begin{frame}{Docker}
+    \framesubtitle{Criando imagens com Dockerfile}
+    Atrav\'es do comando docker build, o Docker realizar a execu\c{c}\~ao desses passos 
+    e no fina da execu\c{c}\~ao ele encapsula cada layer gerada dentro da imagem.
+
+    O Dockerfile deve seguir uma ordem ou formata\c{c}\~ao correta para que o build
+    seja feito de forma certa.
+
+    Exemplo:
+
+    RUN apt-get update
+
+    onde:
+
+    RUN  \'E a instru\c{c}\~ao;
+
+    apt-get update: Argumento que ser\'a executado.
+
+    \href{https://docs.docker.com/engine/reference/builder/}{Dockerfile Referência Oficial}
+\end{frame}
+
+
+\begin{frame}{Docker}
+    \framesubtitle{Criando imagens com Dockerfile}
+    \href{https://github.com/agnaldom/curso-docker/blob/master/images/nginx/Dockerfile}{\includegraphics[height=5cm]{img/docker-nginx.png}}
+\end{frame}
+\begin{frame}{Docker}
+    \framesubtitle{Criando imagens com Dockerfile}
+    \includegraphics[height=2cm]{img/docker-php.png}
 \end{frame}
 \begin{frame}{Docker}
   \framesubtitle{Teste}
