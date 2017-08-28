@@ -24,4 +24,5 @@ EXPOSE 443
 STOPSIGNAL SIGTERM
 
 
-CMD ["/usr/sbin/nginx"]
+#CMD ["/usr/sbin/nginx"]
+CMD ["nginx"]
