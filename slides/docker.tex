@@ -3,6 +3,10 @@
 \usetheme{simple}
 
 \usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
 \usepackage[scale=2]{ccicons}
 
 % TODO: 
@@ -12,24 +16,72 @@
 
 % Watermark background (simple theme)
 
-\setwatermark{\includegraphics[height=8cm]{img/Heckert_GNU_white.png}}
+\setwatermark{\includegraphics[height=8cm]{img/docker.png}}
 
 
-\title{Docker DevOps}
+\title{VIRT - Treinamento da Plataforma de Virtualizacao Xen/Docker}
 \subtitle{}
 \date{\today}
-\author{Agnaldo N. Marinho}
+\author{Agnaldo N. Marinho \\ Gabriel Silva}
 \institute{\url{http://github.com/agnaldom}}
 
 \begin{document}
 
 \maketitle
 
-\begin{frame}{simple}
-  \framesubtitle{A beamer theme}
+\begin{frame}{Docker}
+  \framesubtitle{Introdu\c{c}\~ao ao docker}
 
-  \texttt{simple} is a minimalist Beamer theme that features
+  \texttt{Docker} \'e uma plataforma aberta, criada com o objetivo de facilitar o desenvolvimento, 
+  a implata\c{c}\~ao e a execu\c{c}\~ao de aplica\c{c}\~oes em ambientes isolados. 
 
+  Usando o Docker, voc\^e pode facilmente gerenciar a infraestrutura da aplica\c{c}\~ao, isso agilizar\'a 
+  o processo de cria\c{c}\~ao, manuten\c{c}\~ao e modifica\c{c}\~ao do seu servi\c{c}o.
+\end{frame}
+
+\begin{frame}{Docker}
+    \framesubtitle{Container vs Virtual machines}
+    \includegraphics[height=5.7cm]{img/vm.png}\includegraphics[width=6cm]{img/container.png}
+\end{frame}
+
+\begin{frame}{Docker}
+    \framesubtitle{Instala\c{c}\~ao Docker}
+    \begin{itemize}
+        \item Docker est\'a disponivel em duas edi\c{c}\~oes: Community Edition (CE) e Enterprise Edition (EE).
+        \item Docker (CE) \'e ideial para desenvolvedores e pequena equipes.
+        \item Docker (EE) \'e voltado para times de desenvolvimento e TI das empresas.
+    \end{itemize}
+    No nosso caso vamos usar o (CE), e para vers\~ao do \href{https://docs.docker.com/engine/installation/linux/docker-ce/debian/}{debian stretch}.
+\end{frame}
+
+\begin{frame}{Docker}
+    \framesubtitle{Inciando o seu primeiro container}
+    Depois da instala\c{c}\~ao, vamos testar a instala\c{c}\~ao rodando o seguinte:
+    \includegraphics[height=5cm]{img/hello.png}
+\end{frame}
+
+\setwatermark{\fontsize{125pt}{125pt}\selectfont{Simple}}
+\begin{frame}{Docker}
+    \framesubtitle{Comandos básicos}
+    Para iniciar um container \'e necess\'ario saber a partir de qual imagem será executado. Para lista as
+    images que o seu Docker Host tem localmente, execute o comando abaixo>
+    \begin{enumerate}
+        \item  docker image list
+    \end{enumerate}
+    Baixando a imagem
+    \begin{enumerate}
+        \item docker image pull debian
+    \end{enumerate}
+    Baixamos uma imgem do debian, caso deseje inspecionar a imagem que acabou de atualizar, bastar usar o comando abaixo:
+    \begin{enumerate}
+        \item docker image inspect debian
+    \end{enumerate}
+    O comando inspect \'e respons\'avel por informa todos os dados referentes \`a imagem.
+\end{frame}
+
+
+\begin{frame}{Docker}
+  \framesubtitle{Teste}
   \begin{columns}
     \column{.5\textwidth}
       \begin{itemize}
@@ -43,7 +95,6 @@
          blocks, columns, and all Beamer power
       \end{block}
   \end{columns}
-  
 \end{frame}
 
 
