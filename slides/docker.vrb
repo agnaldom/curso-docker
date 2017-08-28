@@ -1,0 +1,22 @@
+\frametitle{watermark}
+\framesubtitle{not only for images}
+
+  \begin{itemize}
+    \item You can place \emph{any} \LaTeX{} \alert{contents} as a watermark
+  \end{itemize}
+
+  \begin{block}{In preamble}
+    \begin{verbatim}
+     \setwatermark{\includegraphics[height=8cm]{%
+                   img/Heckert_GNU_white.png}}
+    \end{verbatim}
+  \end{block}
+
+  \begin{block}{Just before this frame}
+    \begin{verbatim}
+     \setwatermark{\fontsize{125pt}{125pt}%
+                   \selectfont{Simple}}
+    \end{verbatim}
+  \end{block}
+
+
