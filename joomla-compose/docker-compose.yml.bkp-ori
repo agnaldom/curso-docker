@@ -3,47 +3,50 @@ version: "3"
 services:
   nginx:
     image: nginx:latest
-    container_name: nginx
     ports:
       - "80:80"
     restart: always
     volumes:
       - ./conf/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - /var/lib/docker/volumes/site/joomla:/var/www/html
-    depends_on:
+      - /var/lib/docker/volumes/site/joomla:/var/www/html:rw
+    links:
       - php
+      - db
+    environment:
+      JOOMLA_DB_HOST: db
+      JOOMLA_DB_USER: cursodocker
+      JOOMLA_DB_PASSWORD: cursodocker
   php:
     build: .
-    container_name: php
+    container_name: php-fpm
     ports:
       - "9000:9000"
     restart: always
     volumes:
       - /var/lib/docker/volumes/site/joomla:/var/www/html
-    depends_on:
-      - mariadb
     links:
-      - mariadb:mysql
+      - db
+    environment:
+      JOOMLA_DB_HOST: db
+      JOOMLA_DB_USER: cursodocker
+      JOOMLA_DB_PASSWORD: cursodocker
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
-    depends_on:
-      - mariadb
+    links:
+      - db
     ports:
       - "8183:80"
-    links:
-      - mariadb:mysql
     environment:
-      MYSQL_USERNAME: 'cursodocker'
-      MYSQL_ROOT_PASSWORD: 'cursodocker'
+      MYSQL_USERNAME: cursodocker
+      MYSQL_ROOT_PASSWORD: cursodocker
       PMA_ARBITRARY: 1
-      RM_HOST: mariadb:mysql
-  mariadb:
+      RM_HOST: db
+  db:
     image: mariadb:latest
-    container_name: mariadb
-    restart: always
     ports:
       - "3306:3306"
+    restart: always
     volumes:
       - /var/lib/docker/volumes/site/db-data:/var/lib/mysql
     environment:
