@@ -13,7 +13,7 @@ services:
     depends_on:
       - php
   php:
-    build: .
+    build: php-fpm/.
     container_name: php
     ports:
       - "9000:9000"
@@ -24,6 +24,11 @@ services:
       - mariadb
     links:
       - mariadb:mysql
+    environment:
+      JOOMLA_DB_HOST: mariadb:3306
+      JOOMLA_DB_USER: cursodocker
+      JOOMLA_DB_PASSWORD: cursodocker
+      JOOMLA_DB_NAME: cursodocker
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
@@ -42,8 +47,6 @@ services:
     image: mariadb:latest
     container_name: mariadb
     restart: always
-    ports:
-      - "3306:3306"
     volumes:
       - /var/lib/docker/volumes/site/db-data:/var/lib/mysql
     environment:
