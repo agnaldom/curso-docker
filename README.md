@@ -36,7 +36,7 @@ $ docker pull nginx
 
 * Rodando a imagem
 
-````
+```
 $ docker run -d -p 8080:80 --name webserver nginx
 ```
 
